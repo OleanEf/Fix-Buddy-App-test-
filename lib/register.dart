@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ProfileScreen.dart';
 
 void main() {
   runApp(FixBuddyApp());
@@ -28,11 +29,19 @@ class RegisterScreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              'assets/images/fix_buddy_logo.png', // เปลี่ยนเป็น path ของโลโก้คุณ
+              'assets/images/fix_buddy_logo.png',
               height: 40,
             ),
             const Spacer(),
-            const Icon(Icons.person, color: Colors.black),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              },
+              child: const Icon(Icons.person, color: Colors.black),
+            ),
           ],
         ),
       ),
@@ -54,51 +63,57 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  _buildTextField(label: 'ชื่อผู้ใช้ :'),
-                  _buildTextField(label: 'E-mail :'),
-                  _buildTextField(label: 'เบอร์โทรศัพท์ :'),
-                  _buildTextField(label: 'รหัสผ่าน :', obscureText: true),
-                  _buildTextField(label: 'ยืนยันรหัสผ่าน :', obscureText: true),
-                  Row(
+              padding: const EdgeInsets.all(20.0),
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.67,
+                  child: Column(
                     children: [
-                      Checkbox(value: false, onChanged: (value) {}),
-                      const Expanded(
-                        child: Text(
-                          'รับข้อตกลงของทาง Fix Buddy',
-                          style: TextStyle(fontSize: 14),
+                      _buildTextField(label: 'ชื่อผู้ใช้ :'),
+                      _buildTextField(label: 'E-mail :'),
+                      _buildTextField(label: 'เบอร์โทรศัพท์ :'),
+                      _buildTextField(label: 'รหัสผ่าน :', obscureText: true),
+                      _buildTextField(label: 'ยืนยันรหัสผ่าน :', obscureText: true),
+                      Row(
+                        children: [
+                          Checkbox(value: false, onChanged: (value) {}),
+                          const Expanded(
+                            child: Text(
+                              'รับข้อตกลงของทาง Fix Buddy',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SuccessScreen(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 50,
+                            vertical: 20,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: const Text(
+                          'สมัครสมาชิก',
+                          style: TextStyle(fontSize: 16),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SuccessScreen(),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 50,
-                        vertical: 15,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Text(
-                      'สมัครสมาชิก',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
