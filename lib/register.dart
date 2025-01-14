@@ -80,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                           Checkbox(value: false, onChanged: (value) {}),
                           const Expanded(
                             child: Text(
-                              'รับข้อตกลงของทาง Fix Buddy',
+                              'ยอมรับข้อตกลงของทาง Fix Buddy',
                               style: TextStyle(fontSize: 14),
                             ),
                           ),
